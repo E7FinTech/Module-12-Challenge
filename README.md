@@ -1,4 +1,4 @@
-# Challenge 12
+# Module 12 Challenge
 
 ![alt text](12-challenge-image.png)
 

@@ -2,30 +2,57 @@
 
 ## Overview of the Analysis
 
-In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
+**Purpose:** 
+The purpose of the analysis is to present evaluations of a historical dataset of lending activity from a peer-to-peer lending services company.  Linear regression models will
+be generated to identify the creditworthiness of borrowers.
 
-* Explain the purpose of the analysis.
-* Explain what financial information the data was on, and what you needed to predict.
-* Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
-* Describe the stages of the machine learning process you went through as part of this analysis.
-* Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
+**Data:** 
+Financial information for all lenders included the following variables: 
+    1. Loan Size
+    2. Interest Rate
+    3. Borrower Income
+    4. Debt To Income (DTI)
+    6. Number of Accounts
+    7. Derogatory Remarks
+    8. Total Debt
+    9. Loan Status
+    
+The loan status was the important variable of interest. So, the 'y' variable was separated and set as a label. Healthy loans were denoted by '0' and high risk loans were denoted by '1'. 
+
+**Analysis:**
+First, the number of health loans and high risk loans were counted by using the value_count function. Initial data indicate that there were 75,076 'Healthy Loans' and 2,500 'High-Risk Loans'.  This unbalanced dataset allowed for a training model to be created. The data was split by using the train_test_split function. An initial logistic regression model was created based on this data.  This model would serve as the training data. Predictions and accuracies were calculated based on this data. A confusion matrix was then created to evaluate the predictions.
+
+Secondly, another logistic regression model was created using the resampled data.  This was done by using the random oversampling model to refit the training to a balanced dataset of 56,277 'Healthy Loans' and 56,277 'High-Risk Loans'. Again predictions were made. 
+
 
 ## Results
 
-Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
+By conducting a second logistics regression on training data, the overall accuracy increased from 99.2% to 99.4%.  And the ability to determine 'High-Risk Loans' went from 87% to 97%.
 
-* Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
+**Machine Learning Model 1:**
+
+                 precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     18759
+           1       0.87      0.89      0.88       625
+
+    accuracy                           0.99     19384
+   macro avg       0.94      0.94      0.94     19384
+weighted avg       0.99      0.99      0.99     19384
 
 
 
-* Machine Learning Model 2:
-  * Description of Model 2 Accuracy, Precision, and Recall scores.
+**Machine Learning Model 2:**
+                 precision    recall  f1-score   support
+
+           0       0.99      0.99      0.99     56277
+           1       0.99      0.99      0.99     56277
+
+    accuracy                           0.99    112554
+   macro avg       0.99      0.99      0.99    112554
+weighted avg       0.99      0.99      0.99    112554
+
 
 ## Summary
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
-
-If you do not recommend any of the models, please justify your reasoning.
+Model #2 is the better model for this analysis.  Both the overall accuracy and ability to detect 'High Risk Loans' increased. It is more important to predict the 'High Risk Loans', however, I believe that more information should be used in addition to the algorithm. Sometimes lenders disqualify successful loan candidates without other considerations or unforeseen circumstances.
